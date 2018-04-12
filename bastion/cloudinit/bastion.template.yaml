@@ -1,0 +1,8 @@
+#cloud-config
+runcmd:
+ - touch /root/userdata.`date +%s`.start
+ - echo 'OCIBase Bastion Instance.' | sudo tee /etc/motd
+ - systemctl stop postfix.service
+ - systemctl disable postfix.service
+ - yum update -y
+ - touch /root/userdata.`date +%s`.finish

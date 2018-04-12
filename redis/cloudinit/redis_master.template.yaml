@@ -1,0 +1,42 @@
+#cloud-config
+write_files:
+# setup script
+  - path: "/root/redis/setup_redis_master.sh"
+    permissions: "0777"
+    encoding: "gzip+base64"
+    content: |
+      ${setup_redis_master_sh_content}
+  - path: "/root/redis/setup_redis_master_sentinel.sh"
+    permissions: "0777"
+    encoding: "gzip+base64"
+    content: |
+          ${setup_redis_master_sentinel_content}
+  - path: "/root/redis/redis.conf"
+    permissions: "0640"
+    encoding: "gzip+base64"
+    content: |
+      ${redis_master_conf_content}        
+  - path: "/root/redis/redis-sentinel.conf"
+    permissions: "0640"
+    encoding: "gzip+base64"
+    content: |
+        ${redis_sentinel_conf_content}          
+  - path: "/root/redis/redis.xml"
+    permissions: "0640"
+    encoding: "gzip+base64"
+    content: |
+        ${redis_xml_content}        
+  - path: "/root/redis/redis-sentinel.xml"
+    permissions: "0640"
+    encoding: "gzip+base64"
+    content: |
+        ${redis_sentinel_xml_content}                          
+runcmd:
+ - touch /root/userdata.`date +%s`.start 
+ - echo "Running setup_redis_master.sh..." | tee /root/redis/setup_redis_master.txt
+ - /root/redis/setup_redis_master.sh >> /root/redis/setup_redis_master.txt
+ - echo "Configuring Redis Sentinel on master..." | tee /root/redis/setup_redis_master_sentinel.txt
+ - /root/redis/setup_redis_master_sentinel.sh >> /root/redis/setup_redis_master_sentinel.txt
+ - touch /root/userdata.`date +%s`.finish
+ - touch /home/opc/redis.finish
+ - chown opc:opc /home/opc/redis.finish

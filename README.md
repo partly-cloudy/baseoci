@@ -8,7 +8,7 @@
 
 ## About
 
-The Terraform Base Module Installer for Oracle Cloud Infrastructure provides a Terraform module that provisions a VCN, Bastion and NAT host as 
+The Terraform Base Module Installer for Oracle Cloud Infrastructure provides a Terraform module that provisions a VCN, Bastion and NAT hosts as 
 well as some basic routing.
 
 ## Pre-reqs
@@ -26,7 +26,7 @@ $ cp terraform.example.tfvars terraform.tfvars
 
 * Override other variables urls, hostnames, passwords, shapes etc.
 
-### Deploy gitlab
+### Deploy OCIBase
 
 Initialize Terraform:
 ```
@@ -38,7 +38,7 @@ View what Terraform plans do before actually doing it:
 $ terraform plan
 ```
 
-Create gitlab:
+Create OCIBase:
 ```
 $ terraform apply
 ```

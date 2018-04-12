@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+    <short>Redis Sentinel</short>
+    <description>Redis Sentinel</description>
+    <port protocol="tcp" port="26379"/>
+</service>
