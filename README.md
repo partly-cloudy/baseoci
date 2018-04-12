@@ -4,7 +4,7 @@
 [API signing]: https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm
 [terraform]: https://www.terraform.io
 
-# Terraform Base Module for Oracle Cloud Infrastructure[oci]
+# Terraform Base Module for [Oracle Cloud Infrastructure][oci]
 
 ## About
 
