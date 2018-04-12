@@ -1,5 +1,4 @@
 # baseoci
-repo with vcn, bastion, nat preconfigured
 [oci]: https://cloud.oracle.com/cloud-infrastructure
 [oci provider]: https://github.com/oracle/terraform-provider-oci/releases
 [API signing]: https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm
