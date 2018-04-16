@@ -19,18 +19,6 @@ variable bastion_shape {
   default     = "VM.Standard1.1"
 }
 
-variable bastion_cidr_ad1 {
-  description = "cidr block of bastion in ad1"
-}
-
-variable vcn_dhcp_id {
-  description = "id of default dhcp options for vcn"
-}
-
-variable base_vcn_id {
-  description = "id of OCIBase vcn"
-}
-
-variable ig_route_id {
-  description = "ig route id"
+variable bastion_subnet_id {
+  description = "subnet id of bastion"
 }

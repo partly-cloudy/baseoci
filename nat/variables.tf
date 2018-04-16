@@ -19,22 +19,6 @@ variable nat_shape {
   default     = "VM.Standard2.2"
 }
 
-variable "vcn_cidr" {
-  description = "cidr block of vcn"
-}
-
-variable nat_cidr_ad1 {
-  description = "cidr block of nat in ad1"
-}
-
-variable vcn_dhcp_id {
-  description = "id of default dhcp options for vcn"
-}
-
-variable base_vcn_id {
-  description = "id of OCIBase vcn"
-}
-
-variable ig_route_id {
-  description = "ig route id"
+variable "nat_subnet_id" {
+  description = "subnet id of nat"
 }

@@ -1,5 +1,5 @@
 output "ssh_through_bastion" {
-  value = "ssh -J opc@<bastion_ip_address> opc@<instance_ip_address>"
+  value = "ssh -J opc@${module.bastion.bastion_ad1_ip} opc@<instance_ip_address>"
 }
 
 output "bastion_ips" {

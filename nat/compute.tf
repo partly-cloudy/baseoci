@@ -2,11 +2,11 @@ resource "oci_core_instance" "nat_ad1_instance" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
   compartment_id      = "${var.compartment_ocid}"
   display_name        = "nat_ad1"
-  image = "${var.image_ocid}"
-  shape = "${var.nat_shape}"
+  image               = "${var.image_ocid}"
+  shape               = "${var.nat_shape}"
 
   create_vnic_details {
-    subnet_id              = "${oci_core_subnet.nat_subnet_ad1.id}"
+    subnet_id              = "${var.nat_subnet_id}"
     display_name           = "nat_ad1_vnic"
     hostname_label         = "nat-ad1"
     skip_source_dest_check = true

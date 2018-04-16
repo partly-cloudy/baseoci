@@ -1,13 +1,13 @@
 resource "oci_core_virtual_network" "base_vcn" {
   cidr_block     = "${var.vcn_cidr}"
   compartment_id = "${var.compartment_ocid}"
-  display_name   = "OCIBase VCN"
+  display_name   = "${var.vcn_name}"
   dns_label      = "${var.vcn_dns_name}"
 }
 
 resource "oci_core_internet_gateway" "base_ig" {
   compartment_id = "${var.compartment_ocid}"
-  display_name   = "OCIBase IG"
+  display_name   = "${var.vcn_name} IG"
   vcn_id         = "${oci_core_virtual_network.base_vcn.id}"
 }
 

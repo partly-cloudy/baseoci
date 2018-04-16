@@ -1,4 +1,4 @@
-#Identity and access parameters
+# Identity and access parameters
 tenancy_ocid = ""
 
 user_ocid = ""
@@ -9,25 +9,35 @@ fingerprint = ""
 
 region = "us-ashburn-1"
 
-#networking
+# networking
 
 vcn_dns_name = "baseoci"
 
 vcn_cidr = "10.0.0.0/16"
 
-#compute
+vcn_name = "base vcn"
+
+newbits = 8
+
+subnets = {
+  "bastion" = 1
+  "nat"     = 2
+  "redis"   = 3
+}
+
+# compute
 
 bastion_shape = "VM.Standard1.1"
 
-nat_shape = "VM.Standard2.2"
+nat_shape = "VM.Standard1.1"
 
 redis_shape = "VM.Standard1.2"
 
-#storage
+# storage
 
 redis_volume_size = 50
 
-#redis settings
+# redis settings
 redis_port = 6379
 
 redis_password = "a_very_strong_password"

@@ -44,8 +44,29 @@ variable "vcn_dns_name" {
   default = "baseoci"
 }
 
+variable vcn_name {
+  description = "name of vcn"
+}
+
 variable "vcn_cidr" {
-  default = "10.0.0.0/16"
+  description = "cidr block of VCN"
+  default     = "10.0.0.0/16"
+}
+
+variable "newbits" {
+  description = "new mask for the subnet within the virtual network. use as newbits parameter for cidrsubnet function"
+  default     = 8
+}
+
+variable subnets {
+  description = "zero-based index of the subnet when the network is masked with the newbit."
+  type        = "map"
+
+  default = {
+    bastion = 1
+    nat     = 2
+    redis   = 3
+  }
 }
 
 # compute
@@ -73,10 +94,6 @@ variable nat_shape {
 }
 
 # redis
-
-variable "redis_cidr_ad1" {
-  default = "10.0.5.0/24"
-}
 
 variable redis_shape {
   description = "shape of redis instance"
