@@ -1,6 +1,6 @@
 resource "oci_core_subnet" "bastion_subnet_ad1" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
-  cidr_block          = "${cidrsubnet(var.vcn_cidr,var.newbits,lookup(var.subnets,"bastion"))}"
+  cidr_block          = "${cidrsubnet(var.vcn_cidr,var.newbits,var.subnets["bastion"])}"
   display_name        = "bastion subnet ad1"
   compartment_id      = "${var.compartment_ocid}"
   vcn_id              = "${oci_core_virtual_network.base_vcn.id}"
@@ -12,7 +12,7 @@ resource "oci_core_subnet" "bastion_subnet_ad1" {
 
 resource "oci_core_subnet" "nat_subnet_ad1" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
-  cidr_block          = "${cidrsubnet(var.vcn_cidr,var.newbits,lookup(var.subnets,"nat"))}"
+  cidr_block          = "${cidrsubnet(var.vcn_cidr,var.newbits,var.subnets["nat"])}"
   display_name        = "nat subnet ad1"
   compartment_id      = "${var.compartment_ocid}"
   vcn_id              = "${oci_core_virtual_network.base_vcn.id}"
@@ -24,7 +24,7 @@ resource "oci_core_subnet" "nat_subnet_ad1" {
 
 resource "oci_core_subnet" "redis_subnet_ad1" {
   availability_domain        = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
-  cidr_block                 = "${cidrsubnet(var.vcn_cidr,var.newbits,lookup(var.subnets,"redis"))}"
+  cidr_block                 = "${cidrsubnet(var.vcn_cidr,var.newbits,var.subnets["redis"])}"
   display_name               = "redis subnet ad1"
   compartment_id             = "${var.compartment_ocid}"
   vcn_id                     = "${oci_core_virtual_network.base_vcn.id}"
