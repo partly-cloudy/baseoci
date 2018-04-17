@@ -23,6 +23,8 @@ variable public_key {
   description = "the public key that matches the private key"
 }
 
+# general oci parameters
+
 variable region {
   description = "region"
   default     = "us-ashburn-1"
@@ -34,7 +36,7 @@ variable disable_auto_retries {
   default = true
 }
 
-# network
+# network parameters
 variable "label_prefix" {
   type    = "string"
   default = ""
@@ -74,7 +76,7 @@ variable "imageocids" {
   type = "map"
 
   default = {
-    #  Oracle provided image "Oracle-Linux-7.4-2018.02.21-1"  # https://docs.us-phoenix-1.oraclecloud.com/Content/Resources/Assets/OracleProvidedImageOCIDs.pdf
+    # https://docs.us-phoenix-1.oraclecloud.com/Content/Resources/Assets/OracleProvidedImageOCIDs.pdf
 
     us-phoenix-1   = "ocid1.image.oc1.phx.aaaaaaaaupbfz5f5hdvejulmalhyb6goieolullgkpumorbvxlwkaowglslq"
     us-ashburn-1   = "ocid1.image.oc1.iad.aaaaaaaajlw3xfie2t5t52uegyhiq2npx7bqyu4uvi2zyu3w3mqayc2bxmaa"
