@@ -23,38 +23,14 @@ variable redis_shape {
   default     = "VM.Standard1.1"
 }
 
+variable redis_subnet_id {
+  description = "subnet id of redis subnet"
+}
+
 variable redis_password {
   description = "new redis password"
 }
 
-variable "vcn_cidr" {
-  description = "cidr block of vcn"
-}
-
-variable redis_cidr_ad1 {
-  description = "cidr block of redis in ad1"
-}
-
-variable vcn_dhcp_id {
-  description = "id of default dhcp options for vcn"
-}
-
-variable base_vcn_id {
-  description = "id of gitlab vcn"
-}
-
-# variable base_ig_id {
-#   description = "id of gitlab InternetGateway"
-# }
-
-variable nat_instance_ip_id {
-  description = "id of nat instance ip"
-}
-
 variable bastion_ip {
   description = "bastion public ip address"
-}
-
-variable nat_route_id {
-  description = "id of nat private route"
 }

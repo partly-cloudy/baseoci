@@ -1,15 +1,15 @@
-output "vcn_id" {
-  value = "${oci_core_virtual_network.base_vcn.id}"
+output "bastion_subnet_id" {
+  value = "${oci_core_subnet.bastion_subnet_ad1.id}"
 }
 
-output "vcn_dhcp_id" {
-  value = "${oci_core_virtual_network.base_vcn.default_dhcp_options_id}"
+output "nat_subnet_id" {
+  value = "${oci_core_subnet.nat_subnet_ad1.id}"
 }
 
-output "base_ig_id" {
-  value = "${oci_core_internet_gateway.base_ig.id}"
+output "nat_private_route_id" {
+  value = "${oci_core_route_table.nat_private_route_table.id}"
 }
 
-output "ig_route_id" {
-  value = "${oci_core_route_table.ig_route.id}"
+output "redis_subnet_id" {
+  value = "${oci_core_subnet.redis_subnet_ad1.id}"
 }

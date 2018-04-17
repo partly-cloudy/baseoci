@@ -23,6 +23,8 @@ variable public_key {
   description = "the public key that matches the private key"
 }
 
+# general oci parameters
+
 variable region {
   description = "region"
   default     = "us-ashburn-1"
@@ -34,7 +36,7 @@ variable disable_auto_retries {
   default = true
 }
 
-# network
+# network parameters
 variable "label_prefix" {
   type    = "string"
   default = ""
@@ -44,8 +46,29 @@ variable "vcn_dns_name" {
   default = "baseoci"
 }
 
+variable vcn_name {
+  description = "name of vcn"
+}
+
 variable "vcn_cidr" {
-  default = "10.0.0.0/16"
+  description = "cidr block of VCN"
+  default     = "10.0.0.0/16"
+}
+
+variable "newbits" {
+  description = "new mask for the subnet within the virtual network. use as newbits parameter for cidrsubnet function"
+  default     = 8
+}
+
+variable subnets {
+  description = "zero-based index of the subnet when the network is masked with the newbit."
+  type        = "map"
+
+  default = {
+    bastion = 1
+    nat     = 2
+    redis   = 3
+  }
 }
 
 # compute
@@ -53,7 +76,7 @@ variable "imageocids" {
   type = "map"
 
   default = {
-    #  Oracle provided image "Oracle-Linux-7.4-2018.02.21-1"  # https://docs.us-phoenix-1.oraclecloud.com/Content/Resources/Assets/OracleProvidedImageOCIDs.pdf
+    # https://docs.us-phoenix-1.oraclecloud.com/Content/Resources/Assets/OracleProvidedImageOCIDs.pdf
 
     us-phoenix-1   = "ocid1.image.oc1.phx.aaaaaaaaupbfz5f5hdvejulmalhyb6goieolullgkpumorbvxlwkaowglslq"
     us-ashburn-1   = "ocid1.image.oc1.iad.aaaaaaaajlw3xfie2t5t52uegyhiq2npx7bqyu4uvi2zyu3w3mqayc2bxmaa"
@@ -73,10 +96,6 @@ variable nat_shape {
 }
 
 # redis
-
-variable "redis_cidr_ad1" {
-  default = "10.0.5.0/24"
-}
 
 variable redis_shape {
   description = "shape of redis instance"
