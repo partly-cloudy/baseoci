@@ -1,14 +1,14 @@
-resource "oci_core_instance" "nat_ad1_instance" {
-  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
+resource "oci_core_instance" "nat_instance" {
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[count.index],"name")}"
   compartment_id      = "${var.compartment_ocid}"
-  display_name        = "nat_ad1"
+  display_name        = "${format("nat ad%d",count.index+1)}"
   image               = "${var.image_ocid}"
   shape               = "${var.nat_shape}"
 
   create_vnic_details {
-    subnet_id              = "${var.nat_subnet_id}"
-    display_name           = "nat_ad1_vnic"
-    hostname_label         = "nat-ad1"
+    subnet_id              = "${element(var.nat_subnet_ids,count.index)}"
+    display_name           = "${format("bastion ad%d",count.index+1)}_vnic"
+    hostname_label         = "${format("bastion-ad%d",count.index+1)}"
     skip_source_dest_check = true
   }
 
@@ -21,10 +21,18 @@ resource "oci_core_instance" "nat_ad1_instance" {
   timeouts {
     create = "60m"
   }
+
+  count = "${var.ha_count}"
 }
 
 # Create PrivateIP
 resource "oci_core_private_ip" "nat_ad1_instance_private_ip" {
-  vnic_id      = "${lookup(data.oci_core_vnic_attachments.nat_vnics_ad1.vnic_attachments[0],"vnic_id")}"
-  display_name = "Nat AD 1 Instance Private IP"
+  vnic_id      = "${lookup(data.oci_core_vnic_attachments.nat_vnics_attachments_ad1.vnic_attachments[0],"vnic_id")}"
+  display_name = "nat AD 1 Instance Private IP"
+}
+
+# Create PrivateIP
+resource "oci_core_private_ip" "nat_ad2_instance_private_ip" {
+  vnic_id      = "${lookup(data.oci_core_vnic_attachments.nat_vnics_attachments_ad2.vnic_attachments[0],"vnic_id")}"
+  display_name = "nat AD 2 Instance Private IP"
 }

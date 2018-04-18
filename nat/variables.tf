@@ -14,11 +14,16 @@ variable image_ocid {
   description = "ocid of image"
 }
 
+variable ha_count {
+  description = "number of availability domains where to create instances. max of 3"
+}
+
 variable nat_shape {
   description = "shape of nat instance"
   default     = "VM.Standard2.2"
 }
 
-variable "nat_subnet_id" {
-  description = "subnet id of nat"
+variable "nat_subnet_ids" {
+  description = "subnet ids of nat in 3 ADs in order of AD1, AD2, AD3"
+  type        = "list"
 }

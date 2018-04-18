@@ -1,38 +1,38 @@
 #Identity and access parameters
-variable tenancy_ocid {
+variable "tenancy_ocid" {
   description = "tenancy id"
 }
 
-variable user_ocid {
+variable "user_ocid" {
   description = "user ocid"
 }
 
-variable compartment_ocid {
+variable "compartment_ocid" {
   description = "compartment ocid"
 }
 
-variable fingerprint {
+variable "fingerprint" {
   description = "ssh fingerprint"
 }
 
-variable private_key_path {
+variable "private_key_path" {
   description = "/the/path/to/the/privatekey"
 }
 
-variable public_key {
+variable "public_key" {
   description = "the public key that matches the private key"
 }
 
 # general oci parameters
 
-variable region {
+variable "region" {
   description = "region"
   default     = "us-ashburn-1"
 
   # List of regions: https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm
 }
 
-variable disable_auto_retries {
+variable "disable_auto_retries" {
   default = true
 }
 
@@ -46,7 +46,7 @@ variable "vcn_dns_name" {
   default = "baseoci"
 }
 
-variable vcn_name {
+variable "vcn_name" {
   description = "name of vcn"
 }
 
@@ -60,14 +60,20 @@ variable "newbits" {
   default     = 8
 }
 
-variable subnets {
+variable "subnets" {
   description = "zero-based index of the subnet when the network is masked with the newbit."
   type        = "map"
 
   default = {
-    bastion = 1
-    nat     = 2
-    redis   = 3
+    bastion_ad1 = 11
+    bastion_ad2 = 21
+    bastion_ad3 = 31
+    nat_ad1     = 12
+    nat_ad2     = 22
+    nat_ad3     = 32
+    redis_ad1   = 13
+    redis_ad2   = 23
+    redis_ad3   = 33
   }
 }
 
@@ -85,29 +91,36 @@ variable "imageocids" {
   }
 }
 
-variable bastion_shape {
+variable "bastion_shape" {
   description = "shape of bastion instance"
   default     = "VM.Standard1.1"
 }
 
-variable nat_shape {
+variable "nat_shape" {
   description = "shape of bastion instance"
   default     = "VM.Standard1.1"
 }
 
 # redis
 
-variable redis_shape {
+variable "redis_shape" {
   description = "shape of redis instance"
   default     = "VM.Standard1.1"
 }
 
-variable redis_volume_size {
+variable "redis_volume_size" {
   description = "size of redis volume in GB"
   default     = 50
 }
 
-variable redis_password {
+variable "redis_password" {
   description = "redis password"
   default     = "use_a_strong_password"
+}
+
+# ha
+
+variable "ha_count" {
+  description = "number of availability domains where to create instances. max of 3"
+  default     = 2
 }

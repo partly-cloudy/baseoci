@@ -23,8 +23,8 @@ variable redis_shape {
   default     = "VM.Standard1.1"
 }
 
-variable redis_subnet_id {
-  description = "subnet id of redis subnet"
+variable redis_subnet_ids {
+  description = "subnet ids of redis in 3 ADs in order of AD1, AD2, AD3"
 }
 
 variable redis_password {

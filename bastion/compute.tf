@@ -1,14 +1,14 @@
-resource "oci_core_instance" "bastion_ad1_instance" {
-  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
+resource "oci_core_instance" "bastion_instance" {
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[count.index],"name")}"
   compartment_id      = "${var.compartment_ocid}"
-  display_name        = "bastion_ad1"
+  display_name        = "${format("bastion ad%d",count.index+1)}"
   image               = "${var.image_ocid}"
   shape               = "${var.bastion_shape}"
 
   create_vnic_details {
-    subnet_id        = "${var.bastion_subnet_id}"
-    display_name     = "bastion_ad1_vnic"
-    hostname_label   = "bastion-ad1"
+    subnet_id        = "${element(var.bastion_subnet_ids,count.index)}"
+    display_name     = "${format("bastion ad%d",count.index+1)}_vnic"
+    hostname_label   = "${format("bastion-ad%d",count.index+1)}"
     assign_public_ip = "true"
   }
 
@@ -21,4 +21,6 @@ resource "oci_core_instance" "bastion_ad1_instance" {
   timeouts {
     create = "60m"
   }
+
+  count = "${var.ha_count}"
 }

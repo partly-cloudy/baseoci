@@ -25,10 +25,12 @@ resource "oci_core_route_table" "ig_route" {
 resource "oci_core_route_table" "nat_private_route_table" {
   compartment_id = "${var.compartment_ocid}"
   vcn_id         = "${oci_core_virtual_network.base_vcn.id}"
-  display_name   = "nat private route"
+  display_name   = "${format("nat private route ad%d",count.index+1)}"
 
   route_rules {
     cidr_block        = "0.0.0.0/0"
-    network_entity_id = "${var.nat_ad1_ip_id}"
+    network_entity_id = "${element(var.nat_ip_ids,count.index)}"
   }
+
+  count = "${var.ha_count}"
 }

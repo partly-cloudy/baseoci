@@ -6,7 +6,7 @@ resource "oci_core_instance" "redis_master_ad1" {
   shape               = "${var.redis_shape}"
 
   create_vnic_details {
-    subnet_id        = "${var.redis_subnet_id}"
+    subnet_id        = "${element(var.redis_subnet_ids,0)}"
     display_name     = "redis_master_ad1_vnic"
     hostname_label   = "redis-master-ad1"
     assign_public_ip = "false"

@@ -14,11 +14,16 @@ variable image_ocid {
   description = "ocid of image"
 }
 
+variable ha_count {
+  description = "number of availability domains where to create instances. max of 3"
+}
+
 variable bastion_shape {
   description = "shape of mysql instance"
   default     = "VM.Standard1.1"
 }
 
-variable bastion_subnet_id {
-  description = "subnet id of bastion"
+variable bastion_subnet_ids {
+  description = "subnet ids of bastion in 3 ADs in order of AD1, AD2, AD3"
+  type        = "list"
 }
